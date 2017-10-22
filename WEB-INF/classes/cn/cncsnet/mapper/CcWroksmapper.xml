@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cncsnet.mapper.ccworks">
+    <select id="userbyid" parameterType="int" resultType="CcUsers">
+        select * from cc_users where user_id=#{user_id}
+    </select>
+    <resultMap id="findmap" type="CcWorks">
+        <result column="work_id" property="work_id"></result>
+        <result column="work_name" property="work_name"></result>
+        <result column="work_image" property="work_image"></result>
+        <result column="work_value" property="work_value"></result>
+        <result column="work_date" property="work_date"></result>
+        <association property="work_member" column="work_member" select="userbyid"></association>
+    </resultMap>
+    <select id="find" parameterType="CcWorks" resultMap="findmap">
+        select * from cc_works
+        <where>
+            1=1
+            <if test="work_id !=null">
+                and work_id=#{work_id}
+            </if>
+            <if test="work_name !=null and work_name!=''">
+                and work_name LIKE #{work_name}
+            </if>
+            <if test="work_date !=null">
+                and work_date =#{work_date}
+            </if>
+            <if test="work_member!=null and work_member.user_id !=null">
+                and work_member=#{work_member.user_id}
+            </if>
+        </where>
+        order by work_date  DESC,work_id DESC
+    </select>
+    <insert parameterType="CcWorks" id="save">
+        insert into cc_works VALUES (null,#{work_name},#{work_image},#{work_value},#{work_date},#{work_member.user_id})
+    </insert>
+    <delete id="del" parameterType="int">
+        DELETE from cc_works where work_id=#{work_id}
+    </delete>
+    <update id="edit" parameterType="CcWorks">
+        UPDATE  cc_works
+        <set>
+            <if test="work_name !=null and work_name !=''">
+                work_name=#{work_name},
+            </if>
+            <if test="work_image !=null and work_image !=''">
+                work_image=#{work_image},
+            </if>
+            <if test="work_value !=null">
+                work_value=#{work_value},
+            </if>
+            <if test="work_date !=null">
+                work_date=#{work_date},
+            </if>
+            <if test="work_member!=null and work_member.user_id !=null">
+                work_member=#{work_member.user_id},
+            </if>
+        </set>
+        <where>
+            work_id=#{work_id}
+        </where>
+    </update>
+    </mapper>

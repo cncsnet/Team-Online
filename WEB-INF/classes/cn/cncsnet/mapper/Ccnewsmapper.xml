@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cncsnet.mapper.ccnews">
+    <select id="userbyid" parameterType="int" resultType="Ccusers">
+        select * from cc_users where user_id=#{user_id}
+    </select>
+    <resultMap id="findmap" type="CcNews">
+        <result column="new_id" property="new_id"></result>
+        <result column="new_name" property="new_name"></result>
+        <result column="new_value" property="new_value"></result>
+        <result column="new_date" property="new_date"></result>
+        <association property="new_member" column="new_member" select="userbyid"></association>
+    </resultMap>
+    <select id="find" resultMap="findmap" parameterType="CcNews">
+        select * from cc_news
+        <where>
+            1=1
+            <if test="new_id !=null">
+                and new_id=#{new_id}
+            </if>
+            <if test="new_name !=null and new_name!=''">
+                and new_name like #{new_name}
+            </if>
+            <if test="new_value !=null and new_value !=''">
+                and new_value LIKE #{new_value}
+            </if>
+            <if test="new_date !=null">
+                and new_date=#{new_date}
+            </if>
+            <if test="new_member !=null and new_member.user_id !=null">
+                and new_member=#{new_member.user_id}
+            </if>
+        </where>
+
+            ORDER by new_date desc,new_id DESC
+
+    </select>
+    <insert id="save" parameterType="CcNews">
+        insert into cc_news VALUES (null,#{new_name},#{new_value},#{new_date},#{new_member.user_id})
+    </insert>
+    <delete id="del" parameterType="int">
+        DELETE  from cc_news where new_id=#{new_id}
+    </delete>
+    <update id="edit" parameterType="CcNews">
+        UPDATE cc_news
+        <set>
+            <if test="new_name !=null and new_name!=''">
+                new_name=#{new_name},
+            </if>
+            <if test="new_value !=null">
+                new_value=#{new_value},
+            </if>
+            <if test="new_date !=null">
+                new_date=#{new_date},
+            </if>
+            <if test="new_member!=null and new_member.user_id !=null">
+                new_member=#{new_member.user_id},
+            </if>
+        </set>
+        <where>
+            new_id=#{new_id}
+        </where>
+    </update>
+</mapper>

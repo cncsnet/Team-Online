@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cncsnet.mapper.ccmembers">
+    <select id="find" parameterType="CcMembers" resultType="CcMembers">
+        select * from cc_members
+        <where>
+            1=1
+            <if test="member_id !=null">
+                and member_id=#{member_id}
+            </if>
+            <if test="member_name !=null and member_name !=''">
+                and member_name like #{member_name}
+            </if>
+            <if test="member_old !=null">
+                and member_old=#{member_old}
+            </if>
+            <if test="member_image !=member_image">
+                and member_image=#{member_image}
+            </if>
+            <if test="member_work !=null and member_work !=''">
+                and member_work like #{member_work}
+            </if>
+        </where>
+        order by member_id DESC
+    </select>
+    <insert id="save" parameterType="CcMembers">
+        insert into cc_members VALUES (null,#{member_name},#{member_old},#{member_image},#{member_work})
+    </insert>
+    <delete id="del" parameterType="int">
+        DELETE from cc_members where member_id=#{member_id}
+    </delete>
+    <update id="edit" parameterType="CcMembers">
+        update cc_members
+        <set>
+            <if test="member_name !=null and member_name!=''">
+                member_name=#{member_name},
+            </if>
+            <if test="member_old !=null">
+                member_old=#{member_old},
+            </if>
+            <if test="member_image !=null and member_image!=''">
+                member_image=#{member_image},
+            </if>
+            <if test="member_work !=null and member_work!=''">
+                member_work=#{member_work},
+            </if>
+        </set>
+        <where>
+            member_id=#{member_id}
+        </where>
+    </update>
+    </mapper>
