@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cncsnet.mapper.ccdanye">
+<select id="find" resultType="Ccdanye" parameterType="Ccdanye">
+    select * from cc_danye
+    <where>
+        1=1
+        <if test="danye_id !=null">
+            and danye_id=#{danye_id}
+        </if>
+        <if test="danye_name !=null and danye_name !=''">
+            and danye_name=#{danye_name}
+        </if>
+    </where>
+</select>
+    <insert id="save" parameterType="Ccdanye">
+        insert into cc_danye VALUES (#{danye_id},#{danye_name},#{danye_value})
+    </insert>
+    <update id="edit" parameterType="ccdanye">
+        UPDATE cc_danye
+        <set>
+            <if test="danye_name !=null and danye_name!=''">
+                danye_name=#{danye_name},
+            </if>
+            <if test="danye_value !=null and danye_value !=''">
+                danye_value=#{danye_value},
+            </if>
+
+        </set>
+        <where>
+            danye_id=#{danye_id}
+        </where>
+    </update>
+    <delete id="del" parameterType="int">
+        DELETE  from cc_danye where danye_id=#{danye_id}
+    </delete>
+
+</mapper>

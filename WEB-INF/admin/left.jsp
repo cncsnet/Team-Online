@@ -57,7 +57,13 @@
             <li ><a  href="/load/showuser.jsp"  target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;用户管理</font></button></a></li>
         </ul>
 
-    <div onclick="zk(this)"  id="团队新闻管理" style="background:#D4E7F0;height: 30px;padding-left: 10px;border: 1px #CCE2EA solid;"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;<font style="font-size: 13pt"><b>团队新闻管理</b></font></div>
+    <div onclick="zk(this)"  id="单页管理"  style="background:#D4E7F0;height: 30px;padding-left: 10px;border: 1px #CCE2EA solid;"><span class="glyphicon glyphicon-sunglasses"></span>&nbsp;&nbsp;<font style="font-size: 13pt"><b>单页管理</b></font></div>
+    <ul style="list-style: none;padding: 0px;margin-left: 0px" name="单页管理">
+        <li><a  href="editguanyu.jsp" target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;修改关于我们</font></button></a></li>
+        <li><a  href="editjiaru.jsp" target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;修改加入我们</font></button></a></li>
+        <li><a  href="editlianxi.jsp" target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;修改联系我们</font></button></a></li>
+      </ul>
+        <div onclick="zk(this)"  id="团队新闻管理" style="background:#D4E7F0;height: 30px;padding-left: 10px;border: 1px #CCE2EA solid;"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;<font style="font-size: 13pt"><b>团队新闻管理</b></font></div>
     <ul  style="list-style: none;padding: 0px;margin-left: 0px;" name="团队新闻管理">
         <li ><a  href="/load/addnew.jsp" target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;添加新闻</font></button></a></li>
         <li ><a  href="/load/shownew.jsp" target="rightFrame" style="text-decoration: none;padding-left: 30px;margin-top: 5px;"><button type="button" class="btn btn-link"><font style="font-size: 10pt;color: black"><span class="glyphicon glyphicon-tint"></span>&nbsp;新闻管理</font></button></a></li>

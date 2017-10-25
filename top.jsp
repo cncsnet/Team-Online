@@ -33,9 +33,9 @@
                         <li><a href="newlist.jsp">团队新闻</a> </li>
                         <li><a href="worklist.jsp">作品展示</a> </li>
                         <li><a href="memberlist.jsp">团队成员</a> </li>
-                        <li><a href="#">加入我们</a> </li>
-                        <li><a href="#">关于我们</a> </li>
-                        <li><a href="#">联系我们</a> </li>
+                        <li><a href="jiaru.jsp">加入我们</a> </li>
+                        <li><a href="guanyu.jsp">关于我们</a> </li>
+                        <li><a href="lianxi.jsp">联系我们</a> </li>
 
                     </ul>
 
